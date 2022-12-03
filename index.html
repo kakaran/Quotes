@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap');
+
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1b263b;
+        }
+        .Container
+        {
+            width: 700px ;
+            height: 580px;
+            /* border: 1px solid black; */
+            border-radius: 12px ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #415a77;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        }
+
+        .box{
+            width: 470px;
+            height: 450px;
+            /* border: 1px solid black; */
+            background-color: #e0e1dd;
+            border-radius: 7px;
+            display: flex;
+            /* vertical-align: middle; */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 20px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        }
+        
+        #quotes{
+            font-size: 20px ;
+            font-family: 'Satisfy', cursive;
+            color: #014f86;
+            text-align: center;
+        }
+
+        #author{
+            text-align: right;
+            font-size: 18px;
+            font-family: 'Satisfy', cursive;
+            padding: 50px 8px;
+            color: #002855;
+        }
+
+        #newQ{
+            width: 470px;
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: 'PT Sans', sans-serif;
+            color: #4a5859;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Container">
+        <div class="box">
+            <div class="data">
+                <p id="quotes"></p>
+                <p id="author"></p>
+                <button id=newQ >new Quotes</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const quotes = document.getElementById('quotes');
+        const author = document.getElementById('author');
+        const newq = document.getElementById('newQ');
+        let realData = "";
+        let newQuotes = "";
+        
+        const getNewQuotes = () => {
+            let rnum = Math.floor(Math.random() * 1643);
+            newQuotes = realData[rnum];
+            quotes.innerHTML = newQuotes.text;
+            newQuotes.author == null ? author.innerHTML = "unknown" : author.innerHTML = newQuotes.author;
+        }
+        const getQuotes = async () => {
+            const api = "https://type.fit/api/quotes";
+            try {
+                let data = await fetch(api);
+                realData = await data.json();
+                getNewQuotes();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        newq.addEventListener("click",getNewQuotes);
+        getQuotes();
+    </script>
+</body>
+
+</html>

@@ -41,7 +41,6 @@
             background-color: #e0e1dd;
             border-radius: 7px;
             display: flex;
-            /* vertical-align: middle; */
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -74,6 +73,33 @@
             color: #4a5859;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
             cursor: pointer;
+        }
+
+        @media (max-width : 520px) {
+            
+            .Container{
+                height: 320px;
+            }
+
+            .box{
+                width: 320px;
+                height: 320px;
+            }
+
+            #quotes{
+                font-size: 18px;
+                width: 320px;
+            }
+
+            #author{
+                font-size: 15px;
+                width: 320px;
+            }
+
+            #newQ{
+                width: 320px;
+            }
+
         }
     </style>
 </head>

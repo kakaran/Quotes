@@ -122,7 +122,8 @@
         let newQuotes = "";
         
         const getNewQuotes = () => {
-            let rnum = Math.floor(Math.random() * 1643);
+            let rnum = Math.floor(Math.random() * 16);
+            console.log(rnum);
             newQuotes = realData[rnum];
             quotes.innerHTML = newQuotes.text;
             newQuotes.author == null ? author.innerHTML = "unknown" : author.innerHTML = newQuotes.author;
@@ -132,6 +133,7 @@
             try {
                 let data = await fetch(api);
                 realData = await data.json();
+                console.log(realData);
                 getNewQuotes();
             } catch (error) {
                 console.log(error);
